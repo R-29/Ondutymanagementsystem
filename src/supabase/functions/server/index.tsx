@@ -25,3 +25,13 @@ app.get("/make-server-7c3a3aa3/health", (c) => {
 });
 
 Deno.serve(app.fetch);
+
+const { data, error } = await supabase.auth.signInWithPassword({
+  email: email,
+  password: password,
+});
+
+const { data, error } = await supabase
+  .from('od_applications')
+  .select('*')
+  .eq('student_id', userId);
